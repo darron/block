@@ -1,0 +1,62 @@
+#!/usr/bin/env ruby
+require 'gli'
+begin # XXX: Remove this begin/rescue before distributing your app
+require 'block'
+rescue LoadError
+  STDERR.puts "In development, you need to use `bundle exec bin/block` to run your app"
+  STDERR.puts "At install-time, RubyGems will make sure lib, etc. are in the load path"
+  STDERR.puts "Feel free to remove this message from bin/block now"
+  exit 64
+end
+
+include GLI::App
+
+program_desc 'Ruby Gem to block bad IP addresses that are requesting URLs you determine are bad.'
+
+version Block::VERSION
+
+desc 'The searches - separated by commas.'
+arg_name 'passwd,acunetrix'
+flag [:s,:search]
+
+desc 'The filename to watch'
+arg_name 'filename.txt'
+flag [:f,:file]
+
+desc 'Redis server location'
+arg_name '127.0.0.1:6379'
+default_value '127.0.0.1:6379'
+flag [:r,:redis]
+
+pre do |global,command,options,args|
+  puts "Pre logic here"
+  setup_redis
+  # Pre logic here
+  # Return true to proceed; false to abort and not call the
+  # chosen command
+  # Use skips_pre before a command to skip this block
+  # on that command only
+  true
+end
+
+desc 'Block bad IP addresses'
+command :block do |c|
+  c.action do |global,options,args|
+    puts "Do something here."
+  end
+end
+
+post do |global,command,options,args|
+  puts "Post logic here."
+  # Post logic here
+  # Use skips_post before a command to skip this
+  # block on that command only
+end
+
+on_error do |exception|
+  # Error logic here
+  # return false to skip default error handling
+  true
+end
+
+exit run(ARGV)

@@ -1,22 +1,30 @@
-# -*- encoding: utf-8 -*-
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'block/version'
-
-Gem::Specification.new do |gem|
-  gem.name          = "block"
-  gem.version       = Block::VERSION
-  gem.authors       = ["Darron Froese"]
-  gem.email         = ["darron@froese.org"]
-  gem.description   = %q{Ruby Gem to block bad IP addresses that are requesting URL's you determine are bad.}
-  gem.summary       = %q{Ruby Gem to block bad IP addresses that are requesting URL's you determine are bad.}
-  gem.homepage      = "https://github.com/darron/block"
-
-  gem.files         = `git ls-files`.split($/)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.require_paths = ["lib"]
-  gem.add_dependency('redis', '~> 3.0.0')
-  gem.add_dependency('eventmachine', '>= 1.0.0')
-  gem.add_dependency('eventmachine-tail', '~> 0.6.4')
+# Ensure we require the local version and not one we might have installed already
+require File.join([File.dirname(__FILE__),'lib','block','version.rb'])
+spec = Gem::Specification.new do |s| 
+  s.name = 'block'
+  s.version = Block::VERSION
+  s.author = 'Darron Froese'
+  s.email = 'darron@froese.org'
+  s.homepage = 'http://darron.froese.org'
+  s.platform = Gem::Platform::RUBY
+  s.summary = 'Ruby Gem to block bad IP addresses that are requesting URLs you determine are bad.'
+# Add your other files here if you make them
+  s.files = %w(
+bin/block
+lib/block/version.rb
+lib/block.rb
+  )
+  s.require_paths << 'lib'
+  s.has_rdoc = true
+  s.extra_rdoc_files = ['README.rdoc','block.rdoc']
+  s.rdoc_options << '--title' << 'block' << '--main' << 'README.rdoc' << '-ri'
+  s.bindir = 'bin'
+  s.executables << 'block'
+  s.add_development_dependency('rake')
+  s.add_development_dependency('rdoc')
+  s.add_development_dependency('aruba')
+  s.add_runtime_dependency('gli','2.5.4')
+  s.add_runtime_dependency('redis','~> 3.0.0')
+  s.add_runtime_dependency('eventmachine','>= 1.0.0')
+  s.add_runtime_dependency('eventmachine-tail','~> 0.6.4')
 end

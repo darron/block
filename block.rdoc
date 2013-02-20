@@ -1,0 +1,5 @@
+= block
+
+Generate this with
+    block rdoc
+After you have described your command line interface
