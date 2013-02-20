@@ -1,15 +1,10 @@
 #!/usr/bin/env ruby
 require 'gli'
-begin # XXX: Remove this begin/rescue before distributing your app
 require 'block'
-rescue LoadError
-  STDERR.puts "In development, you need to use `bundle exec bin/block` to run your app"
-  STDERR.puts "At install-time, RubyGems will make sure lib, etc. are in the load path"
-  STDERR.puts "Feel free to remove this message from bin/block now"
-  exit 64
-end
 
 include GLI::App
+
+$redis = Redis.new
 
 program_desc 'Ruby Gem to block bad IP addresses that are requesting URLs you determine are bad.'
 
@@ -29,14 +24,14 @@ default_value '127.0.0.1:6379'
 flag [:r,:redis]
 
 pre do |global,command,options,args|
-  puts "Pre logic here"
-  setup_redis
-  # Pre logic here
-  # Return true to proceed; false to abort and not call the
-  # chosen command
-  # Use skips_pre before a command to skip this block
-  # on that command only
-  true
+  # Make sure there's a file.
+  file = check_for_file(global)
+
+  # Make sure we have searches
+  searches = check_for_searches(global)
+  
+  # Make sure redis is available.
+  redis = check_for_redis
 end
 
 desc 'Block bad IP addresses'

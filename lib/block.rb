@@ -4,12 +4,33 @@ require 'redis'
 # Add requires for other files you add to your project here, so
 # you just need to require this one file in your bin file
 
-def setup_redis
+def check_for_redis
   begin
-    $redis = Redis.new
     $redis.ping
+    true
   rescue
-    puts "######### WARNING: Redis needs to be running. #########"
+    help_now!("######### WARNING: Redis needs to be running. #########")
     false
+  end
+end
+
+def check_for_file(args)
+  if args[:file].nil?
+    help_now!("Need a filename.") 
+  else
+    file = File.join(Dir.pwd,args[:file])
+    if File.exist?(file)
+      true
+    else
+      help_now!("File needs to exist.") 
+    end
+  end
+end
+
+def check_for_searches(args)
+  if args[:search].nil?
+    help_now!("Need some searches - separated by commas.") 
+  else
+    true
   end
 end
