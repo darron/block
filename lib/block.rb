@@ -1,4 +1,5 @@
 require 'block/version.rb'
+require 'block/reader.rb'
 require 'redis'
 
 # Add requires for other files you add to your project here, so
