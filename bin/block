@@ -23,6 +23,16 @@ arg_name '127.0.0.1:6379'
 default_value '127.0.0.1:6379'
 flag [:r,:redis]
 
+desc 'Expiry time in seconds'
+arg_name '10'
+default_value 10
+flag [:e,:expiry]
+
+desc 'Block threshold number'
+arg_name '30'
+default_value 30
+flag [:t,:threshold]
+
 pre do |global,command,options,args|
   # Make sure there's a file.
   file = check_for_file(global)
@@ -37,7 +47,12 @@ end
 desc 'Block bad IP addresses'
 command :block do |c|
   c.action do |global,options,args|
-    puts "Do something here."
+    puts "Starting to tail: #{global[:file]}"
+    $search = global[:search].split(',')
+    $options = global
+    EventMachine.run do
+      EventMachine::file_tail(global[:file], Reader)
+    end
   end
 end
 
