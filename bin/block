@@ -47,8 +47,8 @@ pre do |global,command,options,args|
   redis = check_for_redis
 end
 
-desc 'Block bad IP addresses'
-command :block do |c|
+desc 'Watch and (optionally) block bad IP addresses'
+command :watch do |c|
   c.action do |global,options,args|
     puts "Starting to tail: #{global[:file]}"
     $search = global[:search].split(',')
@@ -60,7 +60,6 @@ command :block do |c|
 end
 
 post do |global,command,options,args|
-  puts "Post logic here."
   # Post logic here
   # Use skips_post before a command to skip this
   # block on that command only
