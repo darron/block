@@ -1,6 +1,12 @@
 block
 =====
 
+To install - first off make sure you have Redis available to you. Then:
+
+    gem install block
+    
+From there, here's how you run it:
+
     NAME
         block - Ruby Gem to block IP addresses that are requesting URLs you determine are bad.
 
