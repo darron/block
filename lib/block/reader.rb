@@ -30,14 +30,16 @@ class Reader < EventMachine::FileTail
   end
 
   def firewall(ip)
-    # /sbin/iptables -I INPUT -s 174.136.98.202 -j DROP
-    puts "Firewalling: #{ip}"
     if ($redis.sismember "ips", "#{ip}")
       puts "Already firewalled"
     else
-      # Disabled during testing.
-      #system "/sbin/iptables -I INPUT -s #{ip} -j DROP"
-      $redis.sadd "ips", "#{ip}"
+      unless ($options[:disable] == true)
+        puts "Firewalling: #{ip}"
+        system "/sbin/iptables -I INPUT -s #{ip} -j DROP"
+        $redis.sadd "ips", "#{ip}"
+      else
+        puts "Adding rules disabled for: #{ip}"
+      end
     end
    end
  end

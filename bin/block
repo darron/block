@@ -33,6 +33,9 @@ arg_name '30'
 default_value 30
 flag [:t,:threshold]
 
+desc 'Disable adding firewall rules'
+switch [:d,:disable]
+
 pre do |global,command,options,args|
   # Make sure there's a file.
   file = check_for_file(global)
