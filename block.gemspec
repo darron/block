@@ -5,7 +5,7 @@ spec = Gem::Specification.new do |s|
   s.version = Block::VERSION
   s.author = 'Darron Froese'
   s.email = 'darron@froese.org'
-  s.homepage = 'http://darron.froese.org'
+  s.homepage = 'https://github.com/darron/block'
   s.platform = Gem::Platform::RUBY
   s.summary = 'Ruby Gem to block IP addresses that are requesting URLs you determine are bad.'
 # Add your other files here if you make them
