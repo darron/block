@@ -36,4 +36,5 @@ Requires
 --------
 
 Ruby 1.8.7 or 1.9.x
+
 Redis
