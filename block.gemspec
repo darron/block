@@ -17,8 +17,8 @@ lib/block.rb
   )
   s.require_paths << 'lib'
   s.has_rdoc = true
-  s.extra_rdoc_files = ['README.rdoc','block.rdoc']
-  s.rdoc_options << '--title' << 'block' << '--main' << 'README.rdoc' << '-ri'
+  s.extra_rdoc_files = ['README.markdown','block.rdoc']
+  s.rdoc_options << '--title' << 'block' << '--main' << 'README.markdown' << '-ri'
   s.bindir = 'bin'
   s.executables << 'block'
   s.add_development_dependency('rake')
