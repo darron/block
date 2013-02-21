@@ -69,4 +69,6 @@ on_error do |exception|
   true
 end
 
+default_command :tasks
+
 exit run(ARGV)
