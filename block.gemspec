@@ -12,6 +12,7 @@ spec = Gem::Specification.new do |s|
   s.files = %w(
 bin/block
 lib/block/version.rb
+lib/block/reader.rb
 lib/block.rb
   )
   s.require_paths << 'lib'
