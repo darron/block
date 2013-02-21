@@ -24,7 +24,6 @@ class Reader < EventMachine::FileTail
   def receive_data(data)
     @buffer.extract(data).each do |line|
       $search.each do |search|
-        puts "Search: #{line} with #{search}"
         log_search(line, "#{search}")
       end
     end
