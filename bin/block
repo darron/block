@@ -4,8 +4,6 @@ require 'block'
 
 include GLI::App
 
-$redis = Redis.new
-
 program_desc 'Ruby Gem to block IP addresses that are requesting URLs you determine are bad.'
 
 version Block::VERSION
@@ -19,8 +17,8 @@ arg_name 'filename.txt'
 flag [:f,:file]
 
 desc 'Redis server location'
-arg_name '127.0.0.1:6379'
-default_value '127.0.0.1:6379'
+arg_name 'redis://127.0.0.1:6379'
+default_value 'redis://127.0.0.1:6379'
 flag [:r,:redis]
 
 desc 'Expiry time in seconds'
@@ -44,7 +42,7 @@ pre do |global,command,options,args|
   searches = check_for_searches(global)
   
   # Make sure redis is available.
-  redis = check_for_redis
+  redis = check_for_redis(global)
 end
 
 desc 'Watch and (optionally) block bad IP addresses'
