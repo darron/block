@@ -6,7 +6,7 @@ include GLI::App
 
 $redis = Redis.new
 
-program_desc 'Ruby Gem to block bad IP addresses that are requesting URLs you determine are bad.'
+program_desc 'Ruby Gem to block IP addresses that are requesting URLs you determine are bad.'
 
 version Block::VERSION
 
