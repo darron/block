@@ -1,6 +1,0 @@
-= block
-
-Describe your project here
-
-:include:block.rdoc
-
