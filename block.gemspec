@@ -7,7 +7,7 @@ spec = Gem::Specification.new do |s|
   s.email = 'darron@froese.org'
   s.homepage = 'http://darron.froese.org'
   s.platform = Gem::Platform::RUBY
-  s.summary = 'Ruby Gem to block bad IP addresses that are requesting URLs you determine are bad.'
+  s.summary = 'Ruby Gem to block IP addresses that are requesting URLs you determine are bad.'
 # Add your other files here if you make them
   s.files = %w(
 bin/block
@@ -23,6 +23,7 @@ lib/block.rb
   s.add_development_dependency('rake')
   s.add_development_dependency('rdoc')
   s.add_development_dependency('aruba')
+  s.add_development_dependency('foreman')
   s.add_runtime_dependency('gli','2.5.4')
   s.add_runtime_dependency('redis','~> 3.0.0')
   s.add_runtime_dependency('eventmachine','>= 1.0.0')
