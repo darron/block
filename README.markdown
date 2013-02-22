@@ -14,7 +14,7 @@ From there, here's how you run it:
         block [global options] command [command options] [arguments...]
 
     VERSION
-        0.0.9
+        0.0.x
 
     GLOBAL OPTIONS
         -d, --[no-]disable                 - Disable adding firewall rules
