@@ -44,3 +44,7 @@ Requires
 Ruby 1.8.7 or 1.9.x
 
 Redis
+
+Demonstration
+-------------
+[![Screenshot](https://raw.github.com/darron/block/master/screenshot.jpg)](http://www.youtube.com/watch?v=Zjzgep3YLT0&feature=youtu.be)
